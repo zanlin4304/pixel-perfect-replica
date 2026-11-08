@@ -6,12 +6,22 @@ import { routeTree } from "@/routeTree.gen";
 
 // Match routes without running loaders or rendering: loaders may need a server or
 // network the test run lacks, and jsdom never loads the stylesheets React waits on.
+function lastMatch(path: string) {
+  const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+  return router.matchRoutes(path).at(-1)?.routeId;
+}
+
 describe("App routing", () => {
   it("matches a page for / instead of falling back to not found", () => {
-    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+    expect(lastMatch("/")).not.toBe(rootRouteId);
+  });
 
-    const matches = router.matchRoutes("/");
+  it("serves separate sign-in and sign-up pages", () => {
+    expect(lastMatch("/auth")).toBe("/auth");
+    expect(lastMatch("/signup")).toBe("/signup");
+  });
 
-    expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
+  it("puts the /app dashboard behind the signed-in gate", () => {
+    expect(lastMatch("/app")).toBe("/_authenticated/app");
   });
 });

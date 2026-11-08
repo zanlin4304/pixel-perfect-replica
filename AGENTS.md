@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- React component files use PascalCase (`SiteHeader.tsx`); hooks/utils keep camelCase (`useAuthSession.ts`). Why: one naming convention keeps components findable (shadcn `components/ui` files are exempt).
+- Signed-in pages live under `src/routes/_authenticated/` (client-only gate redirecting to `/auth`). Why: the session is in browser storage, so the server cannot gate.
+- The backend is used for authentication only; do not add tables, RPCs or `supabase.from()` queries. Why: application data lives in an external AWS store reached through its own API.
