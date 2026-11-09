@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { BellRing, CalendarX2, Radar } from "lucide-react";
 
 import { FarePreviewCard } from "@/components/FarePreviewCard";
@@ -6,27 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Button } from "@/components/ui/button";
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Flight Price Notifier — 機票降價通知" },
-      {
-        name: "description",
-        content:
-          "設定航線與目標價，機票降價就通知你。Set a route and a target price — we email you when the fare from Taipei drops.",
-      },
-      { property: "og:title", content: "Flight Price Notifier — 機票降價通知" },
-      {
-        property: "og:description",
-        content: "Set a route and a target price — we email you when the fare drops.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: Index,
-});
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const features = [
   {
@@ -49,7 +29,16 @@ const features = [
   },
 ];
 
-function Index() {
+export default function Index() {
+  usePageMeta({
+    title: "Flight Price Notifier — 機票降價通知",
+    description:
+      "設定航線與目標價，機票降價就通知你。Set a route and a target price — we email you when the fare from Taipei drops.",
+    ogTitle: "Flight Price Notifier — 機票降價通知",
+    ogDescription: "Set a route and a target price — we email you when the fare drops.",
+    twitterCard: "summary_large_image",
+  });
+
   return (
     <div className="min-h-screen">
       <SiteHeader />
@@ -92,7 +81,9 @@ function Index() {
 
         <section className="mx-auto max-w-6xl px-5 py-24">
           <Reveal className="max-w-xl">
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary-glow">Features</p>
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary-glow">
+              Features
+            </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
               不用一直刷票價，讓我們幫你盯
             </h2>

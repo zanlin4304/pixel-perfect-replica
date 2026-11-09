@@ -1,33 +1,20 @@
 import { useState } from "react";
-import { createFileRoute, Link, redirect, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate } from "react-router-dom";
 
 import { AuthCard } from "@/components/AuthCard";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { supabase } from "@/integrations/supabase/client";
 
-export const Route = createFileRoute("/signup")({
-  ssr: false,
-  beforeLoad: async () => {
-    const { data } = await supabase.auth.getSession();
-    if (data.session) throw redirect({ to: "/app" });
-  },
-  head: () => ({
-    meta: [
-      { title: "Sign up / 註冊 — Flight Price Notifier" },
-      {
-        name: "description",
-        content: "Create a Flight Price Notifier account and get emailed when fares from Taipei drop.",
-      },
-      { property: "og:title", content: "Sign up — Flight Price Notifier" },
-      { property: "og:description", content: "Create an account to start watching flight fares." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-    ],
-  }),
-  component: SignUpPage,
-});
-
-function SignUpPage() {
+export default function SignUpPage() {
   const navigate = useNavigate();
+  usePageMeta({
+    title: "Sign up / 註冊 — Flight Price Notifier",
+    description:
+      "Create a Flight Price Notifier account and get emailed when fares from Taipei drop.",
+    ogTitle: "Sign up — Flight Price Notifier",
+    ogDescription: "Create an account to start watching flight fares.",
+    twitterCard: "summary",
+  });
   const [notice, setNotice] = useState<string | null>(null);
 
   return (
@@ -46,9 +33,11 @@ function SignUpPage() {
         });
         if (error) return error.message;
         if (data.session) {
-          navigate({ to: "/app", replace: true });
+          navigate("/app", { replace: true });
         } else {
-          setNotice("請到信箱確認你的 email，再回來登入。Check your email to confirm your account.");
+          setNotice(
+            "請到信箱確認你的 email，再回來登入。Check your email to confirm your account.",
+          );
         }
         return null;
       }}

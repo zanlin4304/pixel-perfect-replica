@@ -1,28 +1,22 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Plane } from "lucide-react";
+import { useLoaderData } from "react-router-dom";
 
 import { BrandMark } from "@/components/BrandMark";
 import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/ui/button";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { useSignOut } from "@/hooks/useSignOut";
 
-export const Route = createFileRoute("/_authenticated/app")({
-  head: () => ({
-    meta: [
-      { title: "Dashboard — Flight Price Notifier" },
-      { name: "description", content: "Your Flight Price Notifier route-tracking dashboard." },
-      { property: "og:title", content: "Dashboard — Flight Price Notifier" },
-      { property: "og:description", content: "Your route-tracking dashboard." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "robots", content: "noindex" },
-    ],
-  }),
-  component: AppDashboard,
-});
-
-function AppDashboard() {
-  const { user } = Route.useRouteContext();
+export default function AppDashboard() {
+  const { user } = useLoaderData() as { user: { email?: string | undefined } };
+  usePageMeta({
+    title: "Dashboard — Flight Price Notifier",
+    description: "Your Flight Price Notifier route-tracking dashboard.",
+    ogTitle: "Dashboard — Flight Price Notifier",
+    ogDescription: "Your route-tracking dashboard.",
+    twitterCard: "summary",
+    robots: "noindex",
+  });
   const signOut = useSignOut();
 
   return (
