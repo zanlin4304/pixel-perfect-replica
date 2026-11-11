@@ -4,7 +4,6 @@ import { Link, Outlet, useRevalidator, useRouteError } from "react-router-dom";
 
 import { Toaster } from "@/components/ui/sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 
 export function NotFound() {
   return (
@@ -31,9 +30,6 @@ export function NotFound() {
 export function RootErrorBoundary() {
   const error = useRouteError();
   console.error(error);
-  useEffect(() => {
-    reportLovableError(error, { boundary: "react_router_root_error_element" });
-  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
