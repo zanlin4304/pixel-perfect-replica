@@ -72,56 +72,66 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Flight Price Notifier — dark, near-black with a violet accent. Dark is the default theme. */
+/*
+ * Flight Price Notifier — golden-hour theme taken from the style photo: warm cream linen,
+ * champagne gold sun flare, soft blush skin tones and deep espresso brown for text.
+ * (Was: dark near-black with a violet accent.) Functionality and layout are unchanged.
+ *
+ * Note: --primary is the bright sunlit gold (fills, buttons); --primary-glow is a deeper bronze
+ * gold kept dark enough to read as text and icon color on the cream background.
+ */
 :root {
-  --radius: 0.75rem;
-  --background: oklch(0.14 0.012 285);
-  --foreground: oklch(0.96 0.006 285);
-  --card: oklch(0.18 0.016 285);
-  --card-foreground: oklch(0.96 0.006 285);
-  --popover: oklch(0.18 0.016 285);
-  --popover-foreground: oklch(0.96 0.006 285);
-  --primary: oklch(0.64 0.21 293);
-  --primary-foreground: oklch(0.99 0.004 293);
-  --primary-glow: oklch(0.74 0.17 300);
-  --secondary: oklch(0.22 0.02 285);
-  --secondary-foreground: oklch(0.94 0.008 285);
-  --muted: oklch(0.21 0.016 285);
-  --muted-foreground: oklch(0.68 0.02 285);
-  --accent: oklch(0.25 0.04 293);
-  --accent-foreground: oklch(0.96 0.006 285);
-  --success: oklch(0.76 0.15 160);
-  --destructive: oklch(0.66 0.2 22);
-  --destructive-foreground: oklch(0.98 0.004 22);
-  --border: oklch(1 0 0 / 9%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.64 0.21 293);
-  --chart-1: oklch(0.64 0.21 293);
-  --chart-2: oklch(0.74 0.17 300);
-  --chart-3: oklch(0.76 0.15 160);
-  --chart-4: oklch(0.8 0.14 80);
-  --chart-5: oklch(0.66 0.2 22);
-  --sidebar: oklch(0.16 0.014 285);
-  --sidebar-foreground: oklch(0.96 0.006 285);
-  --sidebar-primary: oklch(0.64 0.21 293);
-  --sidebar-primary-foreground: oklch(0.99 0.004 293);
-  --sidebar-accent: oklch(0.22 0.02 285);
-  --sidebar-accent-foreground: oklch(0.96 0.006 285);
-  --sidebar-border: oklch(1 0 0 / 9%);
-  --sidebar-ring: oklch(0.64 0.21 293);
+  --radius: 1rem;
+  --background: oklch(0.965 0.022 84);
+  --foreground: oklch(0.27 0.035 52);
+  --card: oklch(0.985 0.013 86);
+  --card-foreground: oklch(0.27 0.035 52);
+  --popover: oklch(0.985 0.013 86);
+  --popover-foreground: oklch(0.27 0.035 52);
+  --primary: oklch(0.78 0.145 80);
+  --primary-foreground: oklch(0.25 0.045 50);
+  --primary-glow: oklch(0.5 0.115 62);
+  --secondary: oklch(0.93 0.035 82);
+  --secondary-foreground: oklch(0.3 0.04 52);
+  --muted: oklch(0.945 0.025 83);
+  --muted-foreground: oklch(0.49 0.035 58);
+  --accent: oklch(0.915 0.055 82);
+  --accent-foreground: oklch(0.28 0.04 52);
+  --success: oklch(0.5 0.1 150);
+  --destructive: oklch(0.55 0.19 28);
+  --destructive-foreground: oklch(0.98 0.01 80);
+  --border: oklch(0.35 0.04 55 / 14%);
+  --input: oklch(0.35 0.04 55 / 20%);
+  --ring: oklch(0.7 0.14 75);
+  --chart-1: oklch(0.78 0.145 80);
+  --chart-2: oklch(0.5 0.115 62);
+  --chart-3: oklch(0.5 0.1 150);
+  --chart-4: oklch(0.72 0.1 45);
+  --chart-5: oklch(0.55 0.19 28);
+  --sidebar: oklch(0.955 0.025 84);
+  --sidebar-foreground: oklch(0.27 0.035 52);
+  --sidebar-primary: oklch(0.78 0.145 80);
+  --sidebar-primary-foreground: oklch(0.25 0.045 50);
+  --sidebar-accent: oklch(0.93 0.035 82);
+  --sidebar-accent-foreground: oklch(0.28 0.04 52);
+  --sidebar-border: oklch(0.35 0.04 55 / 14%);
+  --sidebar-ring: oklch(0.7 0.14 75);
 
-  --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-glow));
-  --gradient-text: linear-gradient(120deg, var(--foreground) 30%, var(--primary-glow));
+  --gradient-primary: linear-gradient(135deg, oklch(0.86 0.12 88), oklch(0.74 0.15 72));
+  --gradient-text: linear-gradient(120deg, var(--foreground) 28%, var(--primary-glow));
+  /* Sun flare from the top right, blush bounce light on the left, warm haze at the bottom. */
   --gradient-hero:
-    radial-gradient(60% 50% at 50% 0%, color-mix(in oklab, var(--primary) 28%, transparent), transparent 70%),
-    radial-gradient(40% 35% at 85% 30%, color-mix(in oklab, var(--primary-glow) 14%, transparent), transparent 70%);
-  --gradient-card: linear-gradient(180deg, color-mix(in oklab, var(--card) 100%, transparent), color-mix(in oklab, var(--card) 60%, transparent));
-  --shadow-glow: 0 10px 40px -12px color-mix(in oklab, var(--primary) 60%, transparent);
-  --shadow-card: 0 1px 0 0 oklch(1 0 0 / 5%) inset, 0 20px 50px -20px oklch(0 0 0 / 60%);
+    radial-gradient(55% 55% at 88% -5%, oklch(0.9 0.13 88 / 75%), transparent 70%),
+    radial-gradient(45% 45% at 8% 28%, oklch(0.86 0.07 45 / 40%), transparent 72%),
+    radial-gradient(35% 30% at 55% 100%, oklch(0.9 0.08 85 / 45%), transparent 70%);
+  --gradient-card: linear-gradient(180deg, color-mix(in oklab, var(--card) 96%, transparent), color-mix(in oklab, var(--card) 70%, transparent));
+  --shadow-glow: 0 12px 36px -14px oklch(0.7 0.15 72 / 75%);
+  --shadow-card: 0 1px 0 0 oklch(1 0 0 / 80%) inset, 0 28px 56px -30px oklch(0.4 0.07 55 / 45%);
 }
 
 @theme inline {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", "Noto Serif TC", ui-serif, Georgia, "Times New Roman", serif;
   --color-primary-glow: var(--primary-glow);
   --color-success: var(--success);
 }
@@ -132,7 +142,7 @@
   }
 
   html {
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   body {
@@ -141,6 +151,25 @@
     font-family: var(--font-sans);
     font-feature-settings: "cv11", "ss01";
     -webkit-font-smoothing: antialiased;
+  }
+
+  /* Editorial serif headlines, like a film-still magazine cover. */
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+  }
+
+  /* Faint film grain over the whole page; never blocks clicks. */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.045;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.3  0 0 0 0 0.2  0 0 0 0 0.1  0 0 0 0.7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   }
 }
 
@@ -173,8 +202,8 @@
 
 @utility bg-grid {
   background-image:
-    linear-gradient(to right, oklch(1 0 0 / 4%) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(1 0 0 / 4%) 1px, transparent 1px);
+    linear-gradient(to right, oklch(0.35 0.04 55 / 5%) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.35 0.04 55 / 5%) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 30%, transparent 75%);
 }
